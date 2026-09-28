@@ -1,0 +1,11 @@
+{
+  "name": "odoo-lsp",
+  "version": "0.1.0",
+  "description": "Odoo Language Server (odoo-ls) for Python, XML and CSV files in Odoo addons",
+  "author": {
+    "name": "Ville Laitila / Softagram Oy"
+  },
+  "repository": "https://github.com/softagram/odoo-lsp-claude-code",
+  "license": "MIT",
+  "keywords": ["odoo", "lsp", "language-server", "odoo-ls", "code-intelligence"]
+}

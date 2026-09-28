@@ -1,0 +1,13 @@
+{
+  "odoo": {
+    "command": "${CLAUDE_PLUGIN_ROOT}/bin/odoo-ls",
+    "args": ["--log-level", "info"],
+    "extensionToLanguage": {
+      ".py": "python",
+      ".xml": "xml",
+      ".csv": "csv"
+    },
+    "settings": { "Odoo": { "selectedProfile": "default" } },
+    "startupTimeout": 120000
+  }
+}

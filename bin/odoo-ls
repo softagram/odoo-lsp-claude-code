@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Starts odoo_ls_server built from the Claude Code compatible fork
+# (see scripts/install-odoo-ls.sh).
+#
+# Binary lookup: $ODOO_LS_SERVER, else
+# $ODOO_LS_HOME/server/target/release/odoo_ls_server (ODOO_LS_HOME defaults to
+# ~/.local/share/odoo-ls).
+#
+# stdout carries the LSP protocol: write nothing to it.
+set -euo pipefail
+
+home="${ODOO_LS_HOME:-$HOME/.local/share/odoo-ls}"
+server="${ODOO_LS_SERVER:-$home/server/target/release/odoo_ls_server}"
+
+if [ ! -x "$server" ]; then
+  echo "odoo-lsp: odoo_ls_server not found at $server" >&2
+  echo "odoo-lsp: build it with scripts/install-odoo-ls.sh, or set ODOO_LS_HOME / ODOO_LS_SERVER" >&2
+  exit 1
+fi
+
+# The server finds typeshed/, additional_stubs/ and logs/ next to its own
+# executable path, so run the real file, not a symlink to it.
+if [ -L "$server" ]; then
+  server="$(realpath "$server")"
+fi
+
+exec "$server" "$@"

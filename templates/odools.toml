@@ -1,0 +1,21 @@
+# odoo-ls configuration. Copy to your project root as `odools.toml` and adjust
+# the paths. All keys:
+# https://github.com/villelaitila/odoo-ls/blob/claude-code-compat/server/src/core/config/config_key_spec.rs
+#
+# The profile name must match `selectedProfile` in the plugin's .lsp.json ("default").
+[[config]]
+name = "default"
+# Odoo source checkout (odoo/odoo) of the version you target.
+odoo_path = "${userHome}/src/odoo"
+# A Python with Odoo's requirements.txt installed, e.g. a project .venv.
+python_path = "${workspaceFolder}/.venv/bin/python"
+addons_paths = [
+    "${userHome}/src/odoo/addons",
+    "${workspaceFolder}",
+]
+
+# Report diagnostics only for files inside this project (not Odoo core / venv).
+[[config.diagnostic_filters]]
+paths = ["${workspaceFolder}/**"]
+codes = [".*"]
+path_type = "notin"
